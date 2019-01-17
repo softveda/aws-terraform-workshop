@@ -73,8 +73,9 @@ AWS_ACCESS_KEY_ID="AAAA"
 AWS_SECRET_ACCESS_KEY="AAAA"
 ```
 
-Click the "Save Variable" button. Optionally you can mark these variables as Sensitive, which will make them write-only.
+Click the "Save Variable" button. Optionally you can mark these variables as Sensitive, which will make them write-only.  
 
+Below is an example screenshot (your values will be different):
 ![TFE](images/tfe-basics/lab01-tfe-variables.png "TFE")
 
 ## Task 3: Queue a Plan
