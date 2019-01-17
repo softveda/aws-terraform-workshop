@@ -1,6 +1,6 @@
 variable "region" {
   description = "AWS Region where this infrastructure should be deployed"
-  default = "us-west-2"
+  default = "us-east-1"
 }
 
 variable "identity" {
