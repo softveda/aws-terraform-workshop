@@ -15,6 +15,9 @@ resource "aws_instance" "web" {
 
   key_name = "${aws_key_pair.default.id}"
 
+  subnet_id = "${var.subnet_id}"
+  vpc_security_group_ids = ["${var.vpc_security_group_id}"]
+
   tags {
     "Name"       = "${var.identity} web ${count.index+1}/${var.num_webs}"
     "Identity"   = "${var.identity}"

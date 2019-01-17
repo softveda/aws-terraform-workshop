@@ -16,3 +16,11 @@ variable "num_webs" {
   description = "The number of servers to run"
   default     = "1"
 }
+
+variable "subnet_id" {
+
+}
+
+variable "vpc_security_group_id" {
+
+}

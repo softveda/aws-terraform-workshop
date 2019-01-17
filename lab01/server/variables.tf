@@ -11,3 +11,9 @@ variable "identity" {
   description = "A unique name for this server"
 }
 
+variable "subnet_id" {
+}
+
+variable "vpc_security_group_id" {
+}
+
