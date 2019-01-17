@@ -11,6 +11,3 @@ variable "identity" {
   description = "A unique name for this server"
 }
 
-variable "ingress_cidr" {
-  description = "IP address block from which connections to this instance will be made"
-}
