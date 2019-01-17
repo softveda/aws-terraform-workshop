@@ -58,9 +58,9 @@ Go to the "Variables" tab.  On the variables page, you'll see there are two kind
 In the top "Terraform Variables" section, click "Edit" and add 3 variables:
 **Note:** For HashiCorp training students, please issue the following command in your workstation to find the value: `cat /workstation/terraform/terraform.tfvars`
 
-- Key `identity`, value: <your username or email>
-- Key `subnet_id`, value: '<pre-created-subnet-id>'
-- Key `vpc_security_group_id`, value: '<pre-created-security-group-id>'
+- Key `identity`, value: `<your username or email>`
+- Key `subnet_id`, value: `<pre-created-subnet-id>`
+- Key `vpc_security_group_id`, value: `<pre-created-security-group-id>`
 
 ### Step 2.3: Enter AWS Credentials as Environment Variables
 
