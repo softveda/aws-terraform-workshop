@@ -9,7 +9,7 @@ variable "identity" {
 
 variable "ami" {
   description = "The Amazon Machine Image for new instances."
-  default     = "ami-c62eaabe"
+  default     = "ami-03a935aafa6b52b97"
 }
 
 variable "num_webs" {
