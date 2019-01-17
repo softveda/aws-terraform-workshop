@@ -19,10 +19,8 @@ The Terraform configuration in this directory will provision one or more AWS EC2
 ### Terraform Enterprise
 
 - **Pre-requisites:**
-  - An AWS account with IAM user credentials: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-  - A Default VPC in the "us-west-2" region. If case you want to use a default VPC in a different US region, you can use the settings below:
-    - Change Task 1 "TERRAFORM WORKING DIRECTORY": `lab2`
-    - Set a Terraform variable in your Workspace with the key: `region`, and value as: one of `us-east-1`, `us-east-2`, `us-west-1`, `us-west-2`
+  - An AWS account with IAM user credentials: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. For HashiCorp training students, this will be provided.
+  - A previously created AWS Security Group and AWS Subnet ID. For HashiCorp training students, this will be provided.
   - Access to a Terraform Enterprise Server. This Lab will use the hosted SaaS version on [app.terraform.io](https://app.terraform.io), attendees will be provided a trial account.
   - A [GitHub](https://github.com/) account.
 
@@ -57,15 +55,19 @@ Go to the "Variables" tab.  On the variables page, you'll see there are two kind
 
 ### Step 2.2: Enter Terraform Variables
 
-In the top "Terraform Variables" section, click "Edit" and add a variable with the key `identity` and a value which is your username.
-- Optionally, you may add keys and values for remaining variables in the project's `variables.tf` file.
+In the top "Terraform Variables" section, click "Edit" and add 3 variables:
+**Note:** For HashiCorp training students, please issue the following command in your workstation to find the value: `cat /workstation/terraform/terraform.tfvars`
+
+- Key `identity`, value: <your username or email>
+- Key `subnet_id`, value: '<pre-created-subnet-id>'
+- Key `vpc_security_group_id`, value: '<pre-created-security-group-id>'
 
 ### Step 2.3: Enter AWS Credentials as Environment Variables
 
 There is also a section for environment variables. We'll use these to store AWS credentials.
+**Note:** For HashiCorp training students, please issue the following command in your workstation to find the value: `cat /workstation/terraform/terraform.tfvars`
 
 Click "Edit" and add variables for your AWS credentials.
-
 ```bash
 AWS_ACCESS_KEY_ID="AAAA"
 AWS_SECRET_ACCESS_KEY="AAAA"
