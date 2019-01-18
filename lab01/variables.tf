@@ -14,7 +14,7 @@ variable "ami" {
 
 variable "num_webs" {
   description = "The number of servers to run"
-  default     = "2"
+  default     = "1"
 }
 
 variable "subnet_id" {
