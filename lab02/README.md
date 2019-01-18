@@ -6,7 +6,7 @@ This lab demonstrates how to connect Terraform Enterprise to a source code manag
 
 To perform this Lab you will create a new account in [Terraform Enterprise trial account](https://app.terraform.io/account/new), and create your own Organization within Terraform Enterprise.
 
-This lab is for use with a student's own AWS credentials and is intended to run on Terraform Enterprise, however, this lab can also be run locally, see [local.md](local.md) for steps.
+This lab is for use with a student's own AWS credentials and is intended to run on Terraform Enterprise. HashiCorp training students will be provided with Lab AWS credentials.
 
 The Terraform configuration in this directory will provision one or more AWS EC2 instances and deploy an example Go application. To install the application, Terraform will generate a RSA SSH public and private key pair by Terraform using the Terraform [tls_private_key](https://www.terraform.io/docs/providers/tls/r/private_key.html) provider.
 
@@ -105,7 +105,7 @@ Give it a name such as "training-lab02".
 ![TFE](images/tfe-basics/lab02-05.png "TFE")
 
 - Click the "More Options" link
-  - **TERRAFORM WORKING DIRECTORY:** By default Terraform will use repository root directory. In this case we will specify: `lab02`.
+  - **TERRAFORM WORKING DIRECTORY:** By default Terraform will use repository root directory. In this case we will specify: `lab01`.
 
   - **VCS BRANCH:** Terraform Enterprise can deploy from any branch. We'll use the default branch; alternatively you can specify `master`.
 
@@ -115,63 +115,13 @@ Give it a name such as "training-lab02".
 
 You’ll see a screen showing that a Terraform Enterprise workspace is connected to your GitHub repository. But we still need to provide Terraform with our secret key, access key, and other variables defined in the Terraform code as variables.
 
-## Task 2: Configure variables
+## Task 2 - Task 4
 
-Go to the "Variables" tab.  On the variables page, you'll see there are two kinds of variables:
-
-- Terraform variables: these are fed into Terraform, similar to `terraform.tfvars`
-- Environment variables: these are populated in the runtime environment where Terraform executes
-
-### Step 2.2: Enter Terraform Variables
-
-In the top "Terraform Variables" section, click "Edit" and add keys and values for all the variables in the project's `variables.tf` file. The only one you'll need initially is `identity` which is a your username.
-
-### Step 2.3: Enter AWS Credentials as Environment Variables
-
-There is also a section for environment variables. We'll use these to store AWS credentials.
-
-Click "Edit" and add variables for your AWS credentials.
-
-```bash
-AWS_ACCESS_KEY_ID="AAAA"
-AWS_SECRET_ACCESS_KEY="AAAA"
-```
-
-Click the "Save Variable" button. Optionally you can mark these variables as Sensitive, which will make them write-only.
-
-![TFE](images/tfe-basics/lab02-tfe-variables.png "TFE")
-
-## Task 3: Queue a Plan
-
-For this task, you'll queue a `terraform plan`.
-
-### Step 3.1: Queue a plan and read the output
-
-Click the "Queue Plan" button at the top right.
-
-Go to the "Runs" tab, or "Latest Run". Find the most recent one (there will probably be only one).
-
-Scroll down to where it shows the plan. Click the button to "View Plan." You’ll see the same kind of output that you are used to seeing on the command line.
-
-After a few seconds, you'll see that Terraform Enterprise checked the plan and that it passed.
-
-## Task 4: Confirm and Apply the Plan
-
-### Step 4.1: Confirm and `apply`
-
-Scroll to the bottom of the run and confirm the `plan`. At the bottom of the page you’ll see a place to comment (optional) and click "Confirm & Apply."
-
-![TFE](images/tfe-basics/14.png "TFE")
-
-This will queue a `terraform apply`.
-
-Examine the output of `apply` and find the IP address of the new instance. The output looks like what you’ve previously seen in the terminal. Copy the `public_ip` address and paste it into your browser. You'll see the running web application.
-
-![TFE](images/tfe-basics/15.png "TFE")
+Please complete Tasks 2 to Task 4 from Lab 1. These steps are identical.
 
 ## Task 5: Scale the application using a Git workflow
 
-Edit the [main.tf](main.tf) file in GitHub repo to add another instance of the `server` module in `us-east-2` region. You'll make a pull request with these changes and observe the status of the pull request on GitHub.
+Edit the [variables.tf](../lab01/variables.tf) file in GitHub repo to update the `num_webs` default variable value from 1 to 2. You'll make a pull request with these changes and observe the status of the pull request on GitHub.
 
 ### Step 5.1
 
@@ -220,7 +170,7 @@ output "public_dns_us_east_2" {
 
 - Scroll to the bottom of the run and confirm the `plan`. At the bottom of the page you’ll see a place to comment (optional) and click **"Confirm & Apply."** This will queue a `terraform apply`.
 
-Examine the output of `apply` and find the DNS address of the new instance. The output looks like what you’ve previously seen in the terminal. Copy the `public_dns_us_east_2` address and paste it into your browser. You'll see the running web application.
+Examine the output of `apply` and find the DNS address of the new instance. Copy any of the IP addresses and paste it into your browser. You'll see the running web application.
 
 ![TFE](images/tfe-basics/lab02-15.png "TFE")
 
