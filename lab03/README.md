@@ -16,7 +16,7 @@ In this Lab we will continue to use your Organization we setup in lab02. Using S
 
 ### Task 1: Add Sentinel policy to Organization
 
-**Steps:**
+**Steps 1.1: Create a Policy **
 - Go to your Organization URL, which is in the format: `https://app.terraform.io/app/<your-organization-name>`
 - Click on Settings at the top
 - Click on "Sentinel policies" from the Organization Settings menu on the left
@@ -25,7 +25,14 @@ In this Lab we will continue to use your Organization we setup in lab02. Using S
   - Set "ENFORCEMENT MODE" to soft-mandatory (can override)
   - In "POLICY CODE", add the contents of [restrict-aws-instance-type.sentinel](restrict-aws-instance-type.sentinel).
 
-- Click "Create policy"
+- Click "Create policy" and provide a name such as "Global-policies"
+
+**Steps 1.2: Create Policy Set**
+- Click on "Policy Sets" and "Create a New Policy Set"
+- Choose "SCOPE OF POLICIES" to be "Policies enforced on all workspaces"
+- Under "Policies" please choose "restrict-aws-instance-type" and click "Add policy"
+- Click on "Create Policy Set" to save the policy
+
 
 ### Task 2: Queue a plan
 
@@ -37,7 +44,7 @@ In this Lab we will continue to use your Organization we setup in lab02. Using S
 
 **Steps:**
 - The Run should show a Policy failure. View the Allowed EC2 instance types in Sentinel Policy code. You will see `instance_type` is restricted to `t2.small`.
-- Our [main.tf](../lab02/server/main.tf) is using an `instance_type` of `t2.medium` which is causing the Policy to fail.
+- The server module [main.tf](lab01/server/main.tf) is using an `instance_type` of `t2.medium` which is causing the Policy to fail.
 - Since you are the owner of the Organization, you are able to Override this Policy failure.
   - Click on "Override & Continue" button Optionally adding some comments
   - Click on "Confirm and Apply" button to allow the Run to complete.
