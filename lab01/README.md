@@ -4,7 +4,7 @@ Duration: 45 minutes
 
 This lab demonstrates how to create a Workspace in Terraform Enterprise using the UI. This is called a [UI-driven run workflow](https://www.terraform.io/docs/enterprise/run/ui.html).
 
-This lab is for use with a student's own AWS credentials and is intended to run on Terraform Enterprise, however, it an also be run locally, see [local.md](local.md) for steps.
+This lab is for use with a student's own AWS credentials and is intended to run on Terraform Enterprise, however, it an also be run locally, see [local.md](local.md) for steps. 
 
 The Terraform configuration in this directory will provision one or more AWS EC2 instances and deploy an example Go application. To install the application, Terraform will generate a RSA SSH public and private key pair by Terraform using the Terraform [tls_private_key](https://www.terraform.io/docs/providers/tls/r/private_key.html) provider.
 
