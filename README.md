@@ -5,9 +5,9 @@ Below is a series of Lab to help attendees learn about Terraform and how to use 
 ### Prerequisites
 
 - Laptop, preferably with access to bash or similar terminal.
-- AWS Account with IAM credentials. A free one can be trial account can be setup for this event.
+- AWS Account with IAM credentials.
 - A Github Account.
-- Terraform Enterprise Account. Attendees will be provided a trial account on [app.terraform.io](https://app.terraform.io)
+- An account on [Terraform Enterprise SaaS server](http://app.terraform.io) Account.
 
 ### Labs
 
