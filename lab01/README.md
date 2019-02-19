@@ -4,7 +4,7 @@ Duration: 45 minutes
 
 This lab demonstrates how to create a Workspace in Terraform Enterprise using the UI. This is called a [UI-driven run workflow](https://www.terraform.io/docs/enterprise/run/ui.html).
 
-This lab is for use with a student's own AWS credentials and is intended to run on Terraform Enterprise, however, it an also be run locally, see [local.md](local.md) for steps. 
+This lab is for use with a student's own AWS credentials and is intended to run on Terraform Enterprise, however, it an also be run locally, see [local.md](local.md) for steps.
 
 The Terraform configuration in this directory will provision one or more AWS EC2 instances and deploy an example Go application. To install the application, Terraform will generate a RSA SSH public and private key pair by Terraform using the Terraform [tls_private_key](https://www.terraform.io/docs/providers/tls/r/private_key.html) provider.
 
@@ -22,29 +22,28 @@ The Terraform configuration in this directory will provision one or more AWS EC2
   - An AWS account with IAM user credentials: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. For HashiCorp training students, this will be provided.
   - A previously created AWS Security Group and AWS Subnet ID. For HashiCorp training students, this will be provided.
   - Access to a Terraform Enterprise Server. This Lab will use the hosted SaaS version on [app.terraform.io](https://app.terraform.io), attendees will be provided a trial account.
-  - A [GitHub](https://github.com/) account.
 
 ### Task 1: Create a workspace in TFE
 
-- We will use the **aws-terraform-workshop** Organization in Terraform Enterprise. Please go to https://app.terraform.io and ensure you are in this organization, then click the "New Workspace" button at the top right.
+- Please go to [app.terraform.io](https://app.terraform.io), select the organization for this lab, then click the "New Workspace" button at the top right.
+  - HashiCorp training students will be added to a training organization
 
 - Give it a Unique name such as "<yourname>-training-lab01".
 
 - Choose GitHub as VCS connection.
-- Click the "Repository" field and you’ll see a list of available repositories in an auto-complete menu. Find the `aws-terraform-workshop` repo. If yours isn’t here, refresh the page.
+- Click the "Repository" field and you’ll see a list of available repositories in an auto-complete menu. Find the `kawsark/aws-terraform-workshop` repo.
 
 ![TFE](images/tfe-basics/lab01-06.png "TFE")
 
 - Click the "More Options" link
   - **TERRAFORM WORKING DIRECTORY:** By default Terraform will use repository root directory. In this case we will specify `lab01`.
-
   - **VCS BRANCH:** Terraform Enterprise can deploy from any branch. We'll use the default branch; alternatively you can specify `master`.
 
 ![TFE](images/tfe-basics/lab01-07.png "TFE")
 
 - Click the **Create Workspace** button.
 
-You’ll see a screen showing that a Terraform Enterprise workspace is connected to your GitHub repository. But we still need to provide Terraform with our secret key, access key, and other variables defined in the Terraform code as variables.
+You’ll see a screen showing that a Terraform Enterprise workspace is connected to a GitHub repository. But we still need to provide Terraform with our secret key, access key, and other variables defined in the Terraform code as variables.
 
 ## Task 2: Configure variables
 
@@ -61,6 +60,7 @@ In the top "Terraform Variables" section, click "Edit" and add 3 variables:
 - Key `identity`, value: `<your username or email>`
 - Key `subnet_id`, value: `<pre-created-subnet-id>`
 - Key `vpc_security_group_id`, value: `<pre-created-security-group-id>`
+- Key `ami`, value: `<pre-created-ami>`
 
 ### Step 2.3: Enter AWS Credentials as Environment Variables
 
@@ -68,7 +68,7 @@ There is also a section for environment variables. We'll use these to store AWS 
 **Note:** For HashiCorp training students, please issue the following command in your workstation to find the value: `cat /workstation/terraform/terraform.tfvars`
 
 Click "Edit" and add variables for your AWS credentials.
-```bash
+```
 AWS_ACCESS_KEY_ID="AAAA"
 AWS_SECRET_ACCESS_KEY="AAAA"
 ```
@@ -84,7 +84,7 @@ For this task, you'll queue a `terraform plan`.
 
 ### Step 3.1: Queue a plan and read the output
 
-Click the "Queue Plan" button at the top right.
+Click the "Queue Plan" drown down menu at the top right, enter a reason such as "lab", then click "Queue Plan"
 
 Go to the "Runs" tab, or "Latest Run". Find the most recent one (there will probably be only one).
 
@@ -136,10 +136,8 @@ Click "Add" and "Save".
 
 ### Step 6.2: Queue destroy plan
 
-It's sometimes necessary to queue a normal plan and then queue the destroy plan.
+- Click on the "Settings" dropdown, and choose "Destruction and Deletion"
+- Click "Queue Destroy Plan" button; note the messages under "Plan" that indicate that it will destroy several resources.
+![Destroy](images/destroy-button.png "TFE")
 
-At the top of the page, click the "Queue Plan" button. The plan will run and detect that no changes need to be provisioned.
-
-Now go back to the "Settings" tab. Scroll to the bottom and click "Queue Destroy Plan." Note the messages under "Plan" that indicate that it will destroy several resources.
-
-Click "Confirm and Apply." After a few seconds, your infrastructure will be destroyed as requested.
+Click "Confirm and Apply." After a few minutes, your infrastructure will be destroyed as requested.
