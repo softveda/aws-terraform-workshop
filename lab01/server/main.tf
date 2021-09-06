@@ -18,13 +18,14 @@ resource "aws_instance" "web" {
   subnet_id = "${var.subnet_id}"
   vpc_security_group_ids = ["${var.vpc_security_group_id}"]
 
-  tags {
-    "Name"       = "${var.identity} web ${count.index+1}/${var.num_webs}"
-    "Identity"   = "${var.identity}"
-    "Created-by" = "Terraform"
+  tags = {
+    Name       = "${var.identity} web ${count.index+1}/${var.num_webs}"
+    Identity   = "${var.identity}"
+    Created-by = "Terraform"
   }
 
   connection {
+    host = self.public_ip
     user        = "ubuntu"
     private_key = "${tls_private_key.ssh-key-pair.private_key_pem}"
   }
